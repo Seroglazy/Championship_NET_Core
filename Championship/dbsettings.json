@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=DESKTOP-75DA3CR; database = Championship; Integrated Security=SSPI"
+  }
+}
