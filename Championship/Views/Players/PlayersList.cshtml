@@ -1,21 +1,13 @@
 ﻿@{
-
+    
 }
     <div class="mt-5 mb-2 container">
         <h1>Все игроки</h1>
         @{
             //https://localhost:44364/Players/PlayersList
-            foreach (var player in Model.GetAllPlayers)
+            foreach (Players player in Model.GetAllPlayers)
             {
-                string imgsrc = "/img/" + player.Id.ToString() + ".png";
-                <div class="col-lg-4 m-2 container">
-                    <h3>@player.Profile.ToString()</h3>
-                    <form>
-                        <button>+1</button>
-                    </form>
-                    <h4>AKA @player.Alias.ToString()</h4>
-                    <img src="@imgsrc" class="img-thumbnail mb-2" />
-                </div>
+                @Html.Partial("AllPlayers", player)
             }
         }
     </div>

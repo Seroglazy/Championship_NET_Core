@@ -16,5 +16,6 @@ namespace Championship.Data
 
         public DbSet<Players> Players { get; set; }
         public DbSet<Match> Matches { get; set; }
+        public DbSet<MatchParticipant> MatchParticipant { get; set; }
     }
 }

@@ -11,19 +11,11 @@ namespace Championship.Controllers
 {
     public class PlayersController : Controller
     {
-        private readonly IMatches _allMatches;
         private readonly IPlayers _allPlayers;
 
-        public PlayersController(IMatches iMatches, IPlayers iPlayers)
+        public PlayersController(IPlayers iPlayers)
         {
-            _allMatches = iMatches;
             _allPlayers = iPlayers;
-        }
-
-        public ViewResult MatchesList()
-        {
-            var matches = _allMatches.AllMatches;
-            return View(matches);
         }
         public ViewResult PlayersList()
         {

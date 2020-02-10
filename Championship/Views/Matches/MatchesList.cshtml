@@ -1,0 +1,13 @@
+﻿@{
+    
+}
+    <div class="mt-5 mb-2 container">
+        <h1>Все матчи</h1>
+        @{
+            //https://localhost:44364/Players/MatchesList
+            foreach (Match match in Model.GetAllMatches)
+            {
+                @Html.Partial("AllMatches", match)
+            }
+        }
+    </div>
