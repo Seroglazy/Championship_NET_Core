@@ -7,17 +7,14 @@ using System.Threading.Tasks;
 
 namespace Championship.Data.Repository
 {
-    public class MatchesRepository : IMatches
+    public class MatchParticipantRepository : IMatchParticipant
     {
         private readonly AppDBContent appDBContent;
-        public MatchesRepository(AppDBContent appDBContent)
+        public MatchParticipantRepository(AppDBContent appDBContent)
         {
             this.appDBContent = appDBContent;
         }
         //public IEnumerable<Match> Matches => appDBContent.Matches.Include(c => c);
-        public IEnumerable<Match> AllMatches => appDBContent.Matches;
-
-        
-
+        public IEnumerable<MatchParticipant> AllMatchParticipant => appDBContent.MatchParticipant;
     }
 }

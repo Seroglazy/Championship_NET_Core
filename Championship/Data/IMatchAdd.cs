@@ -3,15 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore;
 
 namespace Championship.Data
 {
-    public interface IPlayers
+    public interface IMatchAdd
     {
         IEnumerable<Players> AllPlayers { get; }
-        Players GetPlayerById(int id);
-        Players GetPlayerByName(string name);
-        void UpdateRating(int newRating, string name);
+        void AddMatch(MatchAdd matchToAdd, Match newMatch, MatchParticipant MP1, MatchParticipant MP2);
     }
 }

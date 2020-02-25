@@ -7,27 +7,27 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/css/Style.css" rel="stylesheet" type="text/css" />
 </head>
-<body >
+<body>
     <header class="masthead mb-auto p-3">
-        <div>
-            <h3 class="masthead-brand">@ViewBag.Title</h3>
-            <nav class="nav nav-masthead justify-content-center">
-                <a class="nav-link active" href="#">Home</a>
-                <a class="nav-link" href="#">Features</a>
-                <a class="nav-link" href="#">Contact</a>
+        <div class="nav mb-auto p-1">
+            <h3 class="masthead-brand"></h3>
+            <nav class="nav nav-masthead">
+                <a class="nav-link active" href="/">Главная</a>
+                <a class="nav-link" href="/Players/PlayersList">Игроки</a>
+                <a class="nav-link" href="/Matches/MatchesList">Матчи</a>
+                <partial name="_LoginPartial" />
             </nav>
         </div>
     </header>
-    
-    <div class="d-flex w-100 h-100 p-3 mx-auto flex-column container">
-        @RenderBody()
-    </div>
-
-
+    @RenderBody()
     <footer class="mastfoot mt-auto">
-        <div class="inner">
-            <p>fin</p>
+        <div class=" p-2 inner">
+            <p>@DateTime.Now.Year </p>
         </div>
     </footer>
+
+    @RenderSection("Scripts", required: false)
+
+
 </body>
 </html>
