@@ -1,13 +1,44 @@
 ﻿@{
-    
+
 }
     <div class="mt-5 mb-2 container">
         <h1>Все матчи</h1>
-        @{
-            //https://localhost:44364/Players/MatchesList
-            foreach (Match match in Model.GetAllMatches)
-            {
-                @Html.Partial("AllMatches", match)
+        
+            <div class="modal-header">
+                <h4>Новый матч</h4>
+            </div>
+            <div class="modal-body">
+            <p><a class="btn-warning" asp-controller="MatchAdd" asp-action="MA">Добавить</a></p>
+            </div>
+        <hr />
+            @{
+                string p1 = "";
+                string p2 = "";
+                string winner = "";
+                //https://localhost:44364/Matches/MatchesList
+                foreach (Match match in Model.GetAllMatches)
+                {
+
+                    foreach (MatchParticipant MP in Model.GetAllMatchParticipant)
+                    {
+                        if (MP.matchID == match.Id)
+                        {
+                            if (MP.result == 1)
+                            { 
+                                winner = MP.player; 
+                                p1 = MP.player;
+                            }
+                            else
+                            { p2 = MP.player; }
+                        }
+                        ViewBag.pl1 = p1;
+                        ViewBag.pl2 = p2;
+                        ViewBag.winner = winner;
+                        //Html.Partial("AllMatchParticipant", MP);
+
+                    }
+                    @Html.Partial("AllMatches", match);
+                }
             }
-        }
-    </div>
+           
+        </div>

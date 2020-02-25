@@ -17,6 +17,12 @@ namespace Championship.Data.Repository
         
         public IEnumerable<Players> AllPlayers => appDBContent.Players;
 
-        public Players GetPlayer(int id) => appDBContent.Players.FirstOrDefault(p => p.Id == id);
+        public Players GetPlayerById(int id) => appDBContent.Players.FirstOrDefault(p => p.Id == id);
+        public Players GetPlayerByName(string name) => appDBContent.Players.FirstOrDefault(p => p.Profile == name);
+        public void UpdateRating(int newRating, string name)
+        {
+            appDBContent.Players.FirstOrDefault(p => p.Profile == name).Rating = newRating;
+            appDBContent.SaveChanges();
+        }
     }
 }

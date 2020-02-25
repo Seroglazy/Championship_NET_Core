@@ -9,6 +9,8 @@ namespace Championship.Data
 {
     public class AppDBContent : DbContext
     {
+        
+
         public AppDBContent(DbContextOptions<AppDBContent> options) : base(options)
         {
 
@@ -17,5 +19,6 @@ namespace Championship.Data
         public DbSet<Players> Players { get; set; }
         public DbSet<Match> Matches { get; set; }
         public DbSet<MatchParticipant> MatchParticipant { get; set; }
+        public DbSet<MatchAdd> MatchAdd { get; set; }
     }
 }
