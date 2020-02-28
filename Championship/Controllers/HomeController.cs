@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Championship.Data;
 using Microsoft.AspNetCore;
 using Championship.ViewModels;
-
+using Microsoft.AspNetCore.Http;
 
 namespace Championship.Controllers 
 {

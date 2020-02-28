@@ -1,0 +1,29 @@
+﻿@model Players
+
+<div class="modal-header">
+    <h4>Регистрация</h4>
+</div>
+<div class="modal-body">
+    <form asp-controller="Players" asp-action="PlayerAddPost" method="post" class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-sm-2" asp-for="Profile">Имя профиля:</label>
+            <input type="text" class="form-control col-sm-7" asp-for="Profile" id="Profile" placeholder="" name="Profile">
+            <span asp-validation-for="Profile" class="text-danger"></span>
+        </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" asp-for="Alias">Псевдоним:</label>
+                <input type="text" class="form-control col-sm-7" asp-for="Alias" id="Alias" placeholder="" name="Alias">
+                <span asp-validation-for="Alias" class="text-danger"></span>
+            </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" asp-for="Pass">Пароль:</label>
+                    <input type="password" class="form-control col-sm-7" asp-for="Pass" id="Pass" placeholder="" name="Pass">
+                    <span asp-validation-for="Pass" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    
+                        <input class="col-sm-offset-2 col-sm-2 btn btn-default" type="submit" value="Добавить" />
+                    
+                </div>
+</form>
+</div>

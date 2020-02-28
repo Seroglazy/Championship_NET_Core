@@ -1,8 +1,9 @@
 ﻿@model Players
 
 @{string imgsrc = "/img/" + Model.Id.ToString() + ".png"; }
-<div class="col-lg-4 m-2 container">
-    <h3>@Model.Profile.ToString()</h3>
-    <h4>AKA @Model.Alias.ToString()</h4>
-    <img src="@imgsrc" class="img-thumbnail mb-2" />
-</div>
+    <div class="col-lg-4 m-2 container">
+        <h3>@Model.Profile.ToString()</h3>
+        <h4>AKA @Model.Alias.ToString()</h4>
+        <h4>Рейтинг ELO: @Model.Rating.ToString()</h4>
+        <img src="@imgsrc" class="img-thumbnail mb-2" />
+    </div>

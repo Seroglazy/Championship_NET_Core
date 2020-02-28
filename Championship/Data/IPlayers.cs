@@ -10,6 +10,9 @@ namespace Championship.Data
     public interface IPlayers
     {
         IEnumerable<Players> AllPlayers { get; }
-        Players GetPlayer(int id);
+        Players GetPlayerById(int id);
+        Players GetPlayerByName(string name);
+        void UpdateRating(int newRating, string name);
+        void AddPlayer(Players newPlayer);
     }
 }

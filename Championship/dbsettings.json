@@ -1,5 +1,5 @@
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=DESKTOP-75DA3CR; database = Championship; Integrated Security=SSPI"
+    "DefaultConnection": "Server=(localdb)\\MSSQLLocalDB;Database=Championship;Trusted_Connection=True;MultipleActiveResultSets=true"
   }
 }

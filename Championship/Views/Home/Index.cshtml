@@ -1,6 +1,15 @@
 ﻿@model HomeViewModel
+@using Microsoft.AspNetCore.Http
 @{
 }
 <div class="mt-5 mb-2 container">
-    <h1>Main</h1>
+    
+    @if (Context.Session.GetString("LoggedPlayer") == null)
+    { 
+    <h1>Приветствуем, игрок.</h1>
+    }
+    else
+    { 
+<h1>Приветствуем, @Context.Session.GetString("LoggedPlayer").</h1>
+    }
 </div>
