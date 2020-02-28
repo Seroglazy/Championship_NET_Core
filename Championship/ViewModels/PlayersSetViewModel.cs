@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Championship.ViewModels
 {
-    public class PlayersListViewModel
+    public class PlayersSetViewModel
     {
         public IEnumerable<Players> GetAllPlayers { get; set; }
-        public Players GetPlayerByName { get; set; }
 
     }
 }

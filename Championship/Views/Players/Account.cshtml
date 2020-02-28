@@ -1,0 +1,18 @@
+﻿@model Players
+@{
+
+}
+<div class="mt-5 mb-2 container">
+    <div class="modal-header">
+        <h1>Личный кабинет</h1>
+    </div>
+    
+    @{string imgsrc = "/img/" + Model.Id.ToString() + ".png"; }
+<div class="col-lg-4 m-2 container">
+    <h3>@Model.Profile.ToString()</h3>
+    <h4>AKA @Model.Alias.ToString()</h4>
+    <h4>Рейтинг ELO: @Model.Rating.ToString()</h4>
+    <img src="@imgsrc" class="img-thumbnail mb-2" />
+    <div class="col-sm-offset-2 col-sm-2 btn btn-default"><a asp-controller="Players" asp-action="LogOut">Выйти</a></div>
+</div>
+</div>

@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -7,27 +9,35 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/css/Style.css" rel="stylesheet" type="text/css" />
 </head>
-<body >
+<body>
     <header class="masthead mb-auto p-3">
-        <div>
-            <h3 class="masthead-brand">@ViewBag.Title</h3>
-            <nav class="nav nav-masthead justify-content-center">
-                <a class="nav-link active" href="/">Main</a>
-                <a class="nav-link" href="/Players/PlayersList">Players</a>
-                <a class="nav-link" href="/Matches/MatchesList">Matches</a>
+        <div class="nav mb-auto p-1">
+            <h3 class="masthead-brand"></h3>
+            <nav class="nav nav-masthead">
+                <a class="nav-link" href="/">Главная</a>
+                <a class="nav-link" href="/Players/PlayersList">Игроки</a>
+                <a class="nav-link" href="/Matches/MatchesList">Матчи</a>
+                @if (Context.Session.GetString("LoggedPlayer") != null)
+                {
+                    <a class="nav-link" asp-controller="Players" asp-action="Account">Личный кабинет</a>
+                }
+                else
+                {
+                    <a class="nav-link" asp-controller="Players" asp-action="PlayerAdd">Регистрация</a>
+                    <a class="nav-link" asp-controller="Players" asp-action="PlayerLogin">Вход</a>
+                }
             </nav>
         </div>
     </header>
-    
-    <div class="d-flex w-100 h-100 p-3 mx-auto flex-column container">
-        @RenderBody()
-    </div>
-
-
+    @RenderBody()
     <footer class="mastfoot mt-auto">
-        <div class="inner">
-            <p>|</p>
+        <div class=" p-2 inner">
+            <p>@DateTime.Now.Year </p>
         </div>
     </footer>
+
+    @RenderSection("Scripts", required: false)
+
+
 </body>
 </html>

@@ -11,5 +11,7 @@ namespace Championship.Data.Models
         public int Id { set; get; }
         public DateTime Time { set; get; }
         public string Comment { set; get; }
+
+
     }
 }
