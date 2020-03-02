@@ -28,7 +28,8 @@ namespace Championship
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDBContent>(options => options.UseSqlServer(_confstring.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<AppDBContent>(options => options.UseSqlServer(_confstring.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<AppDBContent>(options => options.UseSqlite("Filename=database.sqlite"));
             services.AddTransient<IPlayers, PlayersRepository>();
             services.AddTransient<IMatches, MatchesRepository>();
             services.AddTransient<IMatchParticipant, MatchParticipantRepository>();
