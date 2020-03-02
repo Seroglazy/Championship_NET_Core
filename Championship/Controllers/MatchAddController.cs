@@ -49,7 +49,15 @@ namespace Championship.Controllers
         [HttpPost]
         public IActionResult MAPost(MatchAdd matchToAdd)
         {
+            
+            if (matchToAdd.win == matchToAdd.lose || matchToAdd.win == null || matchToAdd.lose == null)
+            {
+                ViewBag.PostResultText = "Матч не добавлен! Участники заданы неверно.";
+                ViewBag.PostResult = "0";
+                return View();
+            }
             int PONewRating = 0; int PTNewRating = 0;
+
             if (matchToAdd.time == new DateTime(1, 1, 1, 0, 0, 0)) matchToAdd.time = DateTime.Now;
             Match newMatch = new Match { Time = matchToAdd.time, Comment = matchToAdd.comment+""};
             MatchParticipant ParticipantOne = new MatchParticipant { player = Convert.ToString(matchToAdd.win), matchID = Convert.ToInt32(newMatch.Id), result = 1 };
@@ -68,7 +76,8 @@ namespace Championship.Controllers
             //ViewBag.AP = _allPlayers.AllPlayers
             PlayersListViewModel PListed = new PlayersListViewModel();
             PListed.GetAllPlayers = _allPlayers.AllPlayers;
-
+            ViewBag.PostResultText = "Матч добавлен!";
+            ViewBag.PostResult = "1";
             return View();
         }
     }
