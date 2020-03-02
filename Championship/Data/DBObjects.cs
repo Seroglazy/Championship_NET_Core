@@ -13,12 +13,12 @@ namespace Championship.Data
         public static void Initial(AppDBContent content)
         {
             content.Database.EnsureCreated();
-            if (!content.Players.Any())
-            {
-                //content.Players.AddRange(PlayerRange.Select(p => p.Value));
-                content.Players.Add(new Players { Alias = "SSS", Profile = "TestPlayer1", Rating = 1400, Pass = "12345" });
-                content.Players.Add(new Players { Alias = "TTT", Profile = "TestPlayer2", Rating = 1400, Pass = "12345" });
-            }
+            //if (!content.Players.Any())
+            //{
+            //    //content.Players.AddRange(PlayerRange.Select(p => p.Value));
+            //    content.Players.Add(new Players { Alias = "SSS", Profile = "TestPlayer1", Rating = 1400, Pass = "12345" });
+            //    content.Players.Add(new Players { Alias = "TTT", Profile = "TestPlayer2", Rating = 1400, Pass = "12345" });
+            //}
                 
             
             //if (!content.Matches.Any())

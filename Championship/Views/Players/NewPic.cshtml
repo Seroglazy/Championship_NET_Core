@@ -1,0 +1,22 @@
+﻿@model Players
+@{
+
+}
+<div class="mt-5 mb-2 pt-2 pb-2 container">
+    <div class="modal-header">
+        <h1>Личный кабинет</h1>
+    </div>
+
+    
+    <div class="container">
+        <h3>Загрузите новый аватар</h3>
+        <p>Используйте квадратные картинки для лучшего отображения.</p>
+        <form asp-controller="Players" asp-action="NewPicPost" method="post" class="form-horizontal" enctype="multipart/form-data">
+            <div class="form-group">
+                <label class="control-label col-sm-2">Ваш новый аватар:</label>
+                <input class="form-control col-sm-7" id="Pass" type="file" name="uploadedFile" />
+            </div>
+                <input class="btn-default col-sm-offset-2 col-sm-2" type="submit" value="Обновить аватар" />
+        </form>
+    </div>
+</div>

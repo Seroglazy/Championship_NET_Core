@@ -8,6 +8,7 @@ using Microsoft.AspNetCore;
 using Championship.ViewModels;
 using Championship.Data.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Championship.Controllers
 {
@@ -37,7 +38,8 @@ namespace Championship.Controllers
         public IActionResult PlayerAddPost(Players newPlayer)
         {
             _allPlayers.AddPlayer(new Players { Profile = newPlayer.Profile, Pass = newPlayer.Pass, Alias = newPlayer.Alias, Rating = 1400 });
-            return Redirect("/Home/Index");
+            HttpContext.Session.SetString("LoggedPlayer", newPlayer.Profile);
+            return Redirect("/Players/Account");
         }
         public IActionResult PlayerLogin()
         {
@@ -61,7 +63,7 @@ namespace Championship.Controllers
             //Players person = SessionExtensions.Session.Get<Players>("person");
             // await context.Response.WriteAsync($"Hello {person.Name}, your age: {person.Age}!");
             //SessionExtensions.Set<Players>(context,"Logged", LoggedPlayer.Profile);
-            return Redirect("/Home/Index");
+            return Redirect("/Players/Account");
         }
         public IActionResult Account()
         {
@@ -76,5 +78,23 @@ namespace Championship.Controllers
 //               HttpContext.Session.SetString("LoggedPlayer", null);
             return Redirect("/Home/Index");
         }
+        [HttpPost]
+        public async Task<IActionResult> NewPicPost(IFormFile uploadedFile)
+        {
+            if (uploadedFile != null)
+            {
+                _allPlayers.ProfilePic(uploadedFile, _allPlayers.GetPlayerByName(HttpContext.Session.GetString("LoggedPlayer")).Id);
+                //IMemoryCache cache = new IMemoryCache;
+                
+            }
+
+            return Redirect("/Home/Index");
+        }
+        public IActionResult NewPic()
+        {
+
+            return View();
+        }
+
     }
 }
