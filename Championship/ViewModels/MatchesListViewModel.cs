@@ -10,6 +10,7 @@ namespace Championship.ViewModels
     {
         public IEnumerable<Match> GetAllMatches { get; set; }
         public IEnumerable<MatchParticipant> GetAllMatchParticipant { get; set; }
+        public IEnumerable<Players> GetAllPlayers { get; set; }
 
     }
 }

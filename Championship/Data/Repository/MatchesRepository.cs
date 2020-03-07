@@ -16,8 +16,9 @@ namespace Championship.Data.Repository
         }
         //public IEnumerable<Match> Matches => appDBContent.Matches.Include(c => c);
         public IEnumerable<Match> AllMatches => appDBContent.Matches;
+        public IEnumerable<Players> AllPlayers => appDBContent.Players;
 
-        
+
 
     }
 }
