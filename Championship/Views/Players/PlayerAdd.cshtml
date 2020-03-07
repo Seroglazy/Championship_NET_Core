@@ -1,23 +1,23 @@
 ﻿@model Players
 
-<div class="modal-header">
+<div class="modal-header mt-5 container" >
     <h4>Регистрация</h4>
 </div>
-<div class="modal-body">
+<div class="modal-body container">
     <form asp-controller="Players" asp-action="PlayerAddPost" method="post" class="form-horizontal">
         <div class="form-group">
             <label class="control-label col-sm-2" asp-for="Profile">Имя профиля:</label>
-            <input type="text" class="form-control col-sm-7" asp-for="Profile" id="Profile" placeholder="" name="Profile">
+            <input type="text" class="form-control col-sm-7" asp-for="Profile" id="Profile" placeholder="Логин для входа" name="Profile">
             <span asp-validation-for="Profile" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-2" asp-for="Alias">Псевдоним:</label>
-            <input type="text" class="form-control col-sm-7" asp-for="Alias" id="Alias" placeholder="" name="Alias">
+            <input type="text" class="form-control col-sm-7" asp-for="Alias" id="Alias" placeholder="Имя, видимое другим игрокам" name="Alias">
             <span asp-validation-for="Alias" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-2" asp-for="Pass">Пароль:</label>
-            <input type="password" class="form-control col-sm-7" asp-for="Pass" id="Pass" placeholder="" name="Pass">
+            <input type="password" class="form-control col-sm-7" asp-for="Pass" id="Pass" placeholder="Пароль для входа" name="Pass">
             <span asp-validation-for="Pass" class="text-danger"></span>
         </div>
 

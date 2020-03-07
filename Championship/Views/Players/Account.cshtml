@@ -2,24 +2,32 @@
 @{
 
 }
-<div class="mt-5 mb-2 pt-2 pb-2 container">
+<div class="mt-5 pt-2 pb-2 container">
     <div class="modal-header">
         <h1>Личный кабинет</h1>
     </div>
 
     @{
-        //if (File.)
-        string imgsrc = "/img/" + Model.Id.ToString() + ".png"; 
+        //HttpContext.Session.GetString("LoggedPlayer");
+
+        string imgsrc;
+
+        try
+        { imgsrc = "/img/" + Model.Id.ToString() + ".png"; }
+        catch
+        { imgsrc = "/img/def.png"; }
+
      }
 <div class=" container">
     <h3>@Model.Profile.ToString()</h3>
+   
     <h4>AKA @Model.Alias.ToString()</h4>
     <h4>Рейтинг ELO: @Model.Rating.ToString()</h4>
-    <img class="col-lg-4 m-2 img-thumbnail " src="@imgsrc" alt="Аватара еще нет..." />
+    <img class="col-lg-4 m-2 img-thumbnail " src="@imgsrc" onerror="this.src = '/img/def.png';" alt="Аватара еще нет..." />
     <div class="container m-2 ">
         <div class="btn btn-default"><a asp-controller="Players" asp-action="NewPic">Новый аватар</a></div>
         <div class="btn btn-default"><a asp-controller="Players" asp-action="LogOut">Выйти</a></div>
     </div>
-    
+
 </div>
 </div>

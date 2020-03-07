@@ -13,6 +13,7 @@ namespace Championship.Data
         IEnumerable<Players> AllPlayers { get; }
         Players GetPlayerById(int id);
         Players GetPlayerByName(string name);
+        Players GetPlayerByAlias(string alias);
         void UpdateRating(int newRating, string name);
         void AddPlayer(Players newPlayer);
         void ProfilePic(IFormFile uploadedFile, int LoggedId);

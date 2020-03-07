@@ -1,13 +1,29 @@
 ﻿@{
     
 }
-    <div class="mt-5 mb-2 container">
+    <div class="mt-5 container">
         <h1>Все игроки</h1>
-        @{
-            //https://localhost:44364/Players/PlayersList
-            foreach (Players player in Model.GetAllPlayers)
-            {
-                @Html.Partial("AllPlayers", player)
-            }
-        }
+
+        <table class="table table-striped" style="width:100%;" >
+            <thead class="thead-light">
+                <tr>
+                    <th>Игрок</th>
+                    <th>Рейтинг ELO:</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (Players player in Model.GetAllPlayers)
+                {
+                    <tr>
+
+                        @Html.Partial("AllPlayers", player)
+
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
     </div>

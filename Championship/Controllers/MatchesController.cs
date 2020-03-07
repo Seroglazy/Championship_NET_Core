@@ -21,16 +21,24 @@ namespace Championship.Controllers
             _allMatches = iMatches;
         }
 
-        public ViewResult MatchesList()
+        public ViewResult MatchesList(int ? page = 1)
         {
             ViewBag.Title = "Matches List";
-            //var matches = _allMatches.AllMatches;
-            //return View(matches);
             MatchesListViewModel MListed = new MatchesListViewModel();
-            //MatchParticipantViewModel MPListed = new MatchParticipantViewModel();
             MListed.GetAllMatches = _allMatches.AllMatches;
             MListed.GetAllMatchParticipant = _allMatchParticipant.AllMatchParticipant;
-            //MPListed.GetAllMatchParticipant = _allMatchParticipant.GetMatchParticipant;
+            MListed.GetAllMatches = MListed.GetAllMatches.OrderByDescending(m => m.Time);
+
+
+            var count = 0;
+            foreach (Match match in MListed.GetAllMatches)
+            { count++; }
+            var pagesCount = (count / 10) + 1;
+
+            ViewBag.PagesCount = pagesCount;
+
+            MListed.GetAllMatches = MListed.GetAllMatches.Skip((Convert.ToInt32(page)-1) * 10).Take(10);
+            //MListed.GetAllMatches = MListed.GetAllMatches.Take(10);
             return View(MListed);
         }
 

@@ -1,6 +1,6 @@
 ﻿body {
-    background-color: #2f0c0c;
-    color: #fff;
+    background-color: rgba(208, 140, 97, 0.90);
+    color: #2f0c0c;
     text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
     box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
 }
@@ -8,7 +8,7 @@
 a,
 a:focus,
 a:hover {
-    color: #fff;
+    color: #2f0c0c;
 }
 
 .masthead {
@@ -23,7 +23,7 @@ a:hover {
 .nav-masthead .nav-link {
     padding: .25rem 0;
     font-weight: 700;
-    color: rgba(255, 255, 255, .5);
+    color: #2f0c0c;
     background-color: transparent;
     border-bottom: .25rem solid transparent;
 }
@@ -71,4 +71,5 @@ a:hover {
 
 div {
     background-color: rgba(255, 255, 255, .22);
+    /*border-radius: 10px;*/
 }

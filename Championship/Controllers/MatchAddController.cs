@@ -36,8 +36,8 @@ namespace Championship.Controllers
             
             IEnumerable<SelectListItem> items = _allPlayers.AllPlayers.Select(c => new SelectListItem
             {
-                Value = c.Profile,
-                Text = c.Profile
+                Value = c.Alias,
+                Text = c.Alias
             });
             ViewBag.Profile = items;
 
@@ -62,8 +62,8 @@ namespace Championship.Controllers
             Match newMatch = new Match { Time = matchToAdd.time, Comment = matchToAdd.comment+""};
             MatchParticipant ParticipantOne = new MatchParticipant { player = Convert.ToString(matchToAdd.win), matchID = Convert.ToInt32(newMatch.Id), result = 1 };
             MatchParticipant ParticipantTwo = new MatchParticipant { player = Convert.ToString(matchToAdd.lose), matchID = Convert.ToInt32(newMatch.Id), result = 0 };
-            PONewRating = _allPlayers.GetPlayerByName(matchToAdd.win).Rating;
-            PTNewRating = _allPlayers.GetPlayerByName(matchToAdd.lose).Rating;
+            PONewRating = _allPlayers.GetPlayerByAlias(matchToAdd.win).Rating;
+            PTNewRating = _allPlayers.GetPlayerByAlias(matchToAdd.lose).Rating;
             ELO.CalculateELO(ref PONewRating, ref PTNewRating, 1);
             ELO.CalculateELO(ref PTNewRating, ref PONewRating, 0);
             //POne.Rating = PONewRating;

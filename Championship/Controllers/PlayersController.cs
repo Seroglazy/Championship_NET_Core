@@ -9,6 +9,7 @@ using Championship.ViewModels;
 using Championship.Data.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Caching.Memory;
+using System.Security.Cryptography;
 
 namespace Championship.Controllers
 {
@@ -21,12 +22,25 @@ namespace Championship.Controllers
         {
             _allPlayers = iPlayers;
         }
+
+        string GetHash(string pass)
+        {
+
+            byte[] byteIsh = new System.Text.UTF8Encoding().GetBytes(pass);
+            SHA256 shaMan = new SHA256Managed();
+            byte[] byteshaMan = shaMan.ComputeHash(byteIsh);
+            string result = BitConverter.ToString(byteshaMan);
+            result = result.ToLower().Replace("-", string.Empty);
+            return result;
+        }
+
         public ViewResult PlayersList()
         {
             ViewBag.Title = "Players List";
             //var players = _allPlayers.AllPlayers;
             PlayersListViewModel PListed = new PlayersListViewModel();
             PListed.GetAllPlayers = _allPlayers.AllPlayers;
+            PListed.GetAllPlayers = PListed.GetAllPlayers.OrderByDescending(p => p.Rating);
             return View(PListed);
         }
 
@@ -37,7 +51,12 @@ namespace Championship.Controllers
         [HttpPost]
         public IActionResult PlayerAddPost(Players newPlayer)
         {
-            _allPlayers.AddPlayer(new Players { Profile = newPlayer.Profile, Pass = newPlayer.Pass, Alias = newPlayer.Alias, Rating = 1400 });
+            foreach (Players players in _allPlayers.AllPlayers)
+            if (players.Profile == newPlayer.Profile || players.Alias == newPlayer.Alias)
+                {
+                    return Redirect("/Players/PlayerAdd");
+                }
+            _allPlayers.AddPlayer(new Players { Profile = newPlayer.Profile, Pass = GetHash(newPlayer.Pass), Alias = newPlayer.Alias, Rating = 1400 });
             HttpContext.Session.SetString("LoggedPlayer", newPlayer.Profile);
             return Redirect("/Players/Account");
         }
@@ -48,7 +67,7 @@ namespace Championship.Controllers
         }
         public IActionResult PlayerLoginPost(Players LoggedPlayer)
         {
-            if ((_allPlayers.GetPlayerByName(LoggedPlayer.Profile) != null) && (LoggedPlayer.Pass == _allPlayers.GetPlayerByName(LoggedPlayer.Profile).Pass))
+            if ((_allPlayers.GetPlayerByName(LoggedPlayer.Profile) != null) && (GetHash(LoggedPlayer.Pass) == _allPlayers.GetPlayerByName(LoggedPlayer.Profile).Pass))
             {
                 HttpContext.Session.GetString("LoggedPlayer");
                 LoggedPlayer = _allPlayers.GetPlayerByName(LoggedPlayer.Profile);
@@ -57,6 +76,7 @@ namespace Championship.Controllers
             else
             {
                 ModelState.AddModelError("Invalid Player", "Игрок с таким имененем не найден.");
+                return Redirect("/Players/PlayerLogin");
             }
             //HttpContext.Session.SetInt32("1", 24);
             //ViewBag.test = HttpContext.Session.GetInt32("1"); 

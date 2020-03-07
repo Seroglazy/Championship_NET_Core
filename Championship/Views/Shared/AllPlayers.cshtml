@@ -1,9 +1,13 @@
 ﻿@model Players
 
-@{string imgsrc = "/img/" + Model.Id.ToString() + ".png"; }
-    <div class="col-lg-4 m-2 container">
-        <h3>@Model.Profile.ToString()</h3>
-        <h4>AKA @Model.Alias.ToString()</h4>
-        <h4>Рейтинг ELO: @Model.Rating.ToString()</h4>
-        <img src="@imgsrc" class="img-thumbnail mb-2" />
-    </div>
+@{
+
+        string imgsrc;
+            imgsrc = "/img/" + Model.Id.ToString() + ".png";       
+    }
+
+    <td>@Model.Alias.ToString()</td>
+<td>@Model.Rating.ToString()</td>
+
+<td><img src="@imgsrc" alt="" onerror="this.src = '/img/def.png';" class="img-responsive img-thumbnail mb-2" style="float:right; width:100px" /></td>
+

@@ -24,9 +24,10 @@ namespace Championship.Data.Repository
 
         public Players GetPlayerById(int id) => appDBContent.Players.FirstOrDefault(p => p.Id == id);
         public Players GetPlayerByName(string name) => appDBContent.Players.FirstOrDefault(p => p.Profile == name);
+        public Players GetPlayerByAlias(string alias) => appDBContent.Players.FirstOrDefault(p => p.Alias == alias);
         public void UpdateRating(int newRating, string name)
         {
-            appDBContent.Players.FirstOrDefault(p => p.Profile == name).Rating = newRating;
+            appDBContent.Players.FirstOrDefault(p => p.Alias == name).Rating = newRating;
             appDBContent.SaveChanges();
         }
         public void AddPlayer(Players newPlayer)

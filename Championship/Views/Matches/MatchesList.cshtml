@@ -1,31 +1,40 @@
 ﻿@{
-
+ 
 }
-    <div class="mt-5 mb-2 container">
+    <div class="mt-5 container">
         <h1>Все матчи</h1>
-        
-            <div class="modal-header">
-                <h4>Новый матч</h4>
-            </div>
-            <div class="modal-body">
+
+        <div class="modal-header">
+            <h4>Новый матч</h4>
+        </div>
+        <div class="modal-body">
             <p><a class="btn-default col-sm-offset-2 col-sm-2" asp-controller="MatchAdd" asp-action="MA">Добавить</a></p>
-            </div>
+        </div>
         <hr />
-            @{
-                string p1 = "";
-                string p2 = "";
-                string winner = "";
-                //https://localhost:44364/Matches/MatchesList
-                foreach (Match match in Model.GetAllMatches)
+        <table class="table table-striped table-responsive">
+            <thead class="thead-light">
+                <tr>
+                    <th>Дата</th>
+                    <th>Победитель</th>
+                    <th>Проигравший</th>
+                    <th class="fit" style="width:100%;">Комментарий</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @{string p1 = "";
+                    string p2 = "";
+                    string winner = ""; }
+                @foreach (Match match in Model.GetAllMatches)
                 {
 
-                    foreach (MatchParticipant MP in Model.GetAllMatchParticipant)
+                    @foreach (MatchParticipant MP in Model.GetAllMatchParticipant)
                     {
-                        if (MP.matchID == match.Id)
+                        @if (MP.matchID == match.Id)
                         {
-                            if (MP.result == 1)
-                            { 
-                                winner = MP.player; 
+                            @if (MP.result == 1)
+                            {
+                                winner = MP.player;
                                 p1 = MP.player;
                             }
                             else
@@ -37,8 +46,19 @@
                         //Html.Partial("AllMatchParticipant", MP);
 
                     }
-                    @Html.Partial("AllMatches", match);
+                    <tr>
+                        @Html.Partial("AllMatches", match)
+                    </tr>
                 }
+
+
+            </tbody>
+        </table>
+ <hr />
+        <nav class="navbar  navbar-light mw-100">
+            @for (var i = 1; i <= ViewBag.PagesCount; i++)
+            {
+                <a class="navbar-brand nav-link" href="@Url.Action("MatchesList", "Matches", new {page = i})">@i</a>
             }
-           
-        </div>
+            </nav>
+    </div>
